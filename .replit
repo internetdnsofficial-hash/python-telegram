@@ -1,0 +1,31 @@
+modules = ["python-3.12"]
+run = "python3 bot.py"
+
+[inix]
+channel = "stable-25_05"
+
+[[ports]]
+localPort = 8080
+externalPort = 80
+
+[[ports]]
+localPort = 8080
+externalPort = 443
+
+
+[workflows]
+
+[[workflows.workflow]]
+name = "bot.py"
+mode = "sequential"
+author = 46449583
+
+[[workflows.workflow.tasks]]
+task = "packager.installForLanguage"
+args = "python3"
+
+[deployment]
+run = ["sh", "-c", "python3 bot.py"]
+
+[nix]
+packages = ["tmux"]
